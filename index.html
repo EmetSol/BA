@@ -283,6 +283,21 @@ Project examples are summarised and de-identified where appropriate to protect c
 
     <script src="script.js" defer></script>
 
-    <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "80f9a159a21e4c499416ad8ed28753d2"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- Cloudflare Web Analytics -->
+<script>
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get('preview') !== '1') {
+        const analytics = document.createElement('script');
+        analytics.type = 'module';
+        analytics.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+        analytics.setAttribute(
+            'data-cf-beacon',
+            '{"token":"80f9a159a21e4c499416ad8ed28753d2"}'
+        );
+        document.body.appendChild(analytics);
+    }
+</script>
+<!-- End Cloudflare Web Analytics -->
 </body>
 </html>
